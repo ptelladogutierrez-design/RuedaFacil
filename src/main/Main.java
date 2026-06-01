@@ -1,25 +1,13 @@
 package main;
 
-import dao.VehiculoDAO;
-import dto.Vehiculo;
+import vista.Menu;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Vehiculo v1 = new Vehiculo(
-                0,
-                "5678DEF",
-                "Toyota",
-                "Corolla",
-                45,
-                "Disponible"
-        );
+        Menu menu = new Menu();
 
-        VehiculoDAO dao = new VehiculoDAO();
-
-        dao.insertarVehiculo(v1);
-
-        dao.mostrarVehiculos();
+        menu.iniciar();
     }
 }
