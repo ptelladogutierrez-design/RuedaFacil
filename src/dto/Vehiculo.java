@@ -1,7 +1,8 @@
 package dto;
 
-public class Vehiculo {
+import interfaces.Mostrable;
 
+public class Vehiculo implements Comparable<Vehiculo>, Mostrable {
     private int id;
     private String matricula;
     private String marca;
@@ -60,5 +61,14 @@ public class Vehiculo {
         return id + " - " + matricula + " - " +
                 marca + " - " + modelo +
                 " - " + estado;
+    }
+    @Override
+    public void mostrarInfo() {
+        System.out.println(this);
+    }
+    @Override
+    public int compareTo(Vehiculo otro) {
+
+        return this.marca.compareTo(otro.marca);
     }
 }

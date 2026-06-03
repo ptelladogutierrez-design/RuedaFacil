@@ -6,7 +6,8 @@ import dao.ClienteDAO;
 import dto.Cliente;
 import dao.AlquilerDAO;
 import dto.Alquiler;
-
+import java.util.Iterator;
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -131,12 +132,18 @@ public class Menu {
 
         ArrayList<Vehiculo> vehiculos = dao.obtenerVehiculos();
 
-        System.out.println("\n--- LISTA DE VEHÍCULOS ---");
+        Collections.sort(vehiculos);
 
-        for (Vehiculo v : vehiculos) {
+        Iterator<Vehiculo> it = vehiculos.iterator();
 
-            System.out.println(v);
+        while (it.hasNext()) {
+
+            System.out.println(it.next());
         }
+
+        vehiculos.stream()
+                .filter(v -> v.getPrecioDia() > 0)
+                .forEach(System.out::println);
     }
     public void buscarVehiculosCategoria() {
 

@@ -1,15 +1,12 @@
 package dto;
 
-public class Cliente {
+public class Cliente extends Persona{
 
-    private int id;
-    private String nombre;
     private String dni;
     private String telefono;
 
     public Cliente(int id, String nombre, String dni, String telefono) {
-        this.id = id;
-        this.nombre = nombre;
+        super(id, nombre);
         this.dni = dni;
         this.telefono = telefono;
     }
