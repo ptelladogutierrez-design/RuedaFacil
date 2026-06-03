@@ -84,7 +84,8 @@ public class VehiculoDAO {
                         rs.getString("marca"),
                         rs.getString("modelo"),
                         rs.getDouble("precio_dia"),
-                        rs.getString("estado")
+                        rs.getString("estado"),
+                        rs.getInt("id_categoria")
                 );
 
                 lista.add(v);
@@ -143,5 +144,63 @@ public class VehiculoDAO {
 
             System.out.println("Error al actualizar");
         }
+    }
+    public void cambiarEstado(int idVehiculo, String estado) {
+
+        String sql = "UPDATE vehiculo SET estado = ? WHERE id_vehiculo = ?";
+
+        try {
+
+            Connection con = ConexionBD.conectar();
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, estado);
+            ps.setInt(2, idVehiculo);
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+            System.out.println("Error al cambiar estado");
+        }
+    }
+    public ArrayList<Vehiculo> obtenerVehiculosPorCategoria(int idCategoria) {
+
+        ArrayList<Vehiculo> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM vehiculo WHERE id_categoria = ?";
+
+        try {
+
+            Connection con = ConexionBD.conectar();
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idCategoria);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Vehiculo v = new Vehiculo(
+                        rs.getInt("id_vehiculo"),
+                        rs.getString("matricula"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getDouble("precio_dia"),
+                        rs.getString("estado"),
+                        rs.getInt("id_categoria")
+                );
+
+                lista.add(v);
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al buscar vehículos");
+        }
+
+        return lista;
     }
 }

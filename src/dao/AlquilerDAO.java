@@ -95,4 +95,42 @@ public class AlquilerDAO {
             System.out.println("Error al eliminar alquiler");
         }
     }
+    public ArrayList<Alquiler> obtenerAlquileresCliente(int idCliente) {
+
+        ArrayList<Alquiler> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM alquiler WHERE id_cliente = ?";
+
+        try {
+
+            Connection con = ConexionBD.conectar();
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idCliente);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Alquiler a = new Alquiler(
+                        rs.getInt("id_alquiler"),
+                        rs.getString("fecha_inicio"),
+                        rs.getString("fecha_fin"),
+                        rs.getDouble("precio_total"),
+                        rs.getInt("id_cliente"),
+                        rs.getInt("id_vehiculo"),
+                        rs.getInt("id_empleado")
+                );
+
+                lista.add(a);
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al obtener historial");
+        }
+
+        return lista;
+    }
 }

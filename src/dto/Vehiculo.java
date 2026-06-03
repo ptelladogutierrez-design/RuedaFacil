@@ -8,12 +8,14 @@ public class Vehiculo {
     private String modelo;
     private double precioDia;
     private String estado;
+    private int idCategoria;
 
     public Vehiculo() {
     }
 
     public Vehiculo(int id, String matricula, String marca,
-                    String modelo, double precioDia, String estado) {
+                    String modelo, double precioDia,
+                    String estado, int idCategoria) {
 
         this.id = id;
         this.matricula = matricula;
@@ -21,58 +23,42 @@ public class Vehiculo {
         this.modelo = modelo;
         this.precioDia = precioDia;
         this.estado = estado;
+        this.idCategoria = idCategoria;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public String getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
     public String getModelo() {
         return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
 
     public double getPrecioDia() {
         return precioDia;
     }
 
-    public void setPrecioDia(double precioDia) {
-        this.precioDia = precioDia;
-    }
-
     public String getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     @Override
     public String toString() {
-        return matricula + " - " + marca + " " + modelo;
+
+        return id + " - " + matricula + " - " +
+                marca + " - " + modelo +
+                " - " + estado;
     }
 }
